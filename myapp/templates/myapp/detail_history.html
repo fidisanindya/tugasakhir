@@ -1,0 +1,76 @@
+{% extends 'base_generic.html' %} {% block content %}
+<div class="row">
+    <div class="col-lg-4 d-flex align-items-stretch">
+        <div class="card w-100">
+            <div class="card-body p-4">
+                <div class="mb-4">
+                    <h5 class="card-title fw-semibold">Sampel Dahak</h5>
+                </div>
+                <img src="/media/{{ history.image }}" width="300px">
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8 d-flex align-items-stretch">
+        <div class="card w-100">
+            <div class="card-body p-4">
+                <h5 class="card-title fw-semibold mb-4">Informasi Pasien</h5>
+                <div class="table-responsive">
+                    <table class="table text-nowrap mb-0 align-middle">
+                        <tbody>
+                            <tr>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">Nama Lengkap</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <p class="mb-0 fw-normal">{{ history.name }}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">No. HP</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <p class="mb-0 fw-normal">{{ history.phone }}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">Email</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <p class="mb-0 fw-normal">{{ history.email }}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">Alamat</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <p class="mb-0 fw-normal">{{ history.address }}</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border-bottom-0">
+                                    <h6 class="fw-semibold mb-1">Hasil Deteksi</h6>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <div class="d-flex align-items-center gap-2">
+                                        {% if history.result == 'Positif' %}
+                                        <span class="badge bg-danger rounded-3 fw-semibold">{{ history.result }}</span> {% elif history.result == 'Negatif' %}
+                                        <span class="badge bg-success rounded-3 fw-semibold">{{ history.result }}</span> {% else %}
+                                        <span class="badge bg-secondary rounded-3 fw-semibold">{{ history.result }}</span> {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div style="text-align: right;">
+                        <a href="{% url 'history' %}" class="btn btn-primary">Kembali</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

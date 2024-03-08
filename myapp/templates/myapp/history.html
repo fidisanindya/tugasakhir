@@ -1,0 +1,67 @@
+{% extends 'base_generic.html' %} {% block content %}
+<div class="card w-100">
+    <div class="card-body p-4">
+        <h5 class="card-title fw-semibold mb-4">Riwayat Deteksi</h5>
+        <div class="table-responsive">
+            <table class="table text-nowrap mb-0 align-middle">
+                <thead class="text-dark fs-4">
+                    <tr>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">No</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Nama Pasien</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">No. HP</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Email</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Hasil Deteksi</h6>
+                        </th>
+                        <th class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">Detail</h6>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for key, history in histories %}
+                    <tr>
+                        <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-0">{{ key}}</h6>
+                        </td>
+                        <td class="border-bottom-0">
+                            <h6 class="fw-semibold mb-1">{{ history.name }}</h6>
+                        </td>
+                        <td class="border-bottom-0">
+                            <p class="mb-0 fw-normal">{{ history.phone }}</p>
+                        </td>
+                        <td class="border-bottom-0">
+                            <p class="mb-0 fw-normal">{{ history.email }}</p>
+                        </td>
+                        <td class="border-bottom-0">
+                            <div class="d-flex align-items-center gap-2">
+                                {% if history.result == 'Positif' %}
+                                <span class="badge bg-danger rounded-3 fw-semibold">{{ history.result }}</span> {% elif history.result == 'Negatif' %}
+                                <span class="badge bg-success rounded-3 fw-semibold">{{ history.result }}</span> {% else %}
+                                <span class="badge bg-secondary rounded-3 fw-semibold">{{ history.result }}</span> {% endif %}
+                            </div>
+                        </td>
+                        <td class="border-bottom-0">
+                            <div class="d-flex align-items-center gap-2">
+                                <a href="{% url 'detail_history' pk=history.pk %}" class="btn btn-primary">
+                                    <i class="ti ti-search nav-small-cap-icon fs-4"></i> Detail
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
